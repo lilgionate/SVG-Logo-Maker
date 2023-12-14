@@ -22,10 +22,10 @@ class MockCircle extends MockShape {}
 
 // Mock data for testing
 const testData = {
-  shape: 'Circle',
-  shape_color: 'blue',
-  text: 'lol',
-  text_color: 'black',
+  shape: 'Shapes',
+  shape_color: 'color',
+  text: '',
+  text_color: 'color',
 };
 
 // Test generateLogo function
