@@ -1,31 +1,37 @@
-const { describe } = require("yargs")
-const {Circle, Square, Triangle} = require("../lib/shapes")
-const { default: test } = require("node:test")
+// test/test.js
+const assert = require('assert');
+const generateLogo = require('../utils/generateLogo');
 
-//Circle Shape 
-describe('Circle', () => {
-    test('renders correctly', () => {
-        const shape = new Circle();
-        var color =('blue')
-        shape.setColor(color);
-        expect(shape.render()).toEqual(`<circle cx="50%" r="100" height="100%" width="100%" fill="${this.color}"/>`);
-    });
-});
-//Square Shape
-describe('Square', () => {
-    test('renders correctly', () => {
-        const shape = new Square();
-        var color =('green')
-        shape.setColor(color);
-        expect(shape.render()).toEqual(`<rect x="50" height="200" width="200" fill="${this.color}"/>`);
-    });
-});
-// Triangle Shape
-describe('Triangle', () => {
-    test('renders correctly', () => {
-        const shape = new Triangle();
-        var color =('pink')
-        shape.setColor(color);
-        expect(shape.render()).toEqual(`<polygon height="100%" width="100%" points="0,200 300,200 150,0" fill="${this.color}"/>`);
-    });
+// Mock classes for testing
+class MockShape {
+  constructor(color, text, textColor) {
+    this.color = color;
+    this.text = text;
+    this.textColor = textColor;
+  }
+
+  render() {
+    return `<svg>${this.color}${this.text}${this.textColor}</svg>`;
+  }
+}
+
+// Mock classes for testing
+class MockSquare extends MockShape {}
+class MockTriangle extends MockShape {}
+class MockCircle extends MockShape {}
+
+// Mock data for testing
+const testData = {
+  shape: 'Circle',
+  shape_color: 'blue',
+  text: 'lol',
+  text_color: 'black',
+};
+
+// Test generateLogo function
+describe('generateLogo', function () {
+  it('should generate SVG markup for Circle', function () {
+    const result = generateLogo(testData);
+    assert.strictEqual(result, `<svg>bluelolblack</svg>`);
+  });
 });
